@@ -40,12 +40,12 @@ with DAG(
                 print("Collection has records. Deleting existing records...")
                 collection.delete_many({})
                 print("Existing records deleted.")
+            
+            if records:
+                collection.insert_many(records)
+                print("Inserted {} records.".format(len(records)))
             else:
-                if records:
-                    collection.insert_many(records)
-                    print("Inserted {} records.".format(len(records)))
-                else:
-                    print("No Data to insert into Mongo DB")
+                print("No Data to insert into Mongo DB")
         except Exception as e:
             print(f"Error inserting into MongoDB: {e}")
 
